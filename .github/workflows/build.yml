@@ -12,11 +12,8 @@ jobs:
     - name: Download Blender
       run: sudo snap install blender --classic
 
-    - name: Find Blender
-      run: which blender
-
     - name: Export objects
-      run: /usr/bin/blender RoadsPathsFences.blend --background --python export.py
+      run: /snap/bin/blender RoadsPathsFences.blend --background --python export.py
 
     - name: Zip Folder
       run: zip -r release.zip -x .git/** .
