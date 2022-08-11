@@ -16,7 +16,7 @@ jobs:
       run: /snap/bin/blender RoadsPathsFences.blend --background --python export.py
 
     - name: Zip Folder
-      run: zip -r release.zip -x .git/** .
+      run: zip -r release.zip . -x .git/**
 
     - name: Release to Github
       run: echo "Release"
