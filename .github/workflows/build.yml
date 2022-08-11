@@ -1,0 +1,22 @@
+name: Build
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Download Blender
+      run: sudo apt-get install -y blender
+
+    - name: Export objects
+      run: /usr/bin/blender RoadsPathsFences.blend --background --python export.py
+
+    - name: Zip Folder
+      run: zip -r release.zip .
+
+    - name: Release to Github
+      run: echo "Release"

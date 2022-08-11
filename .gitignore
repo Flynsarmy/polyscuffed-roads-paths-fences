@@ -1,0 +1,10 @@
+# OS
+.DS_Store
+Thumbs.db
+
+*.blend1
+*.zip
+fbx
+obj
+gltf
+
