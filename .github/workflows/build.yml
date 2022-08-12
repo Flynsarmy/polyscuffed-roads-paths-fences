@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+      with:
+        fetch-depth: '0'
 
     - name: Download Blender
       run: sudo snap install blender --classic
@@ -26,3 +28,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.AUTOTAG_TOKEN }}
         REPO_OWNER: flynsarmy
+        DEFAULT_BUMP: minor
