@@ -30,3 +30,4 @@ jobs:
         REPO_OWNER: flynsarmy
         DEFAULT_BUMP: minor
         WITH_V: true
+        INITIAL_VERSION: 0.0.0
