@@ -16,7 +16,7 @@ jobs:
       run: /snap/bin/blender RoadsPathsFences.blend --background --python export.py
 
     - name: Create Release Folder
-      run: rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitignore' . ./release
+      run: rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitignore' --exclude='export.py' . ./release
     - name: Switch to Release Folder
       run: |
         cd release
