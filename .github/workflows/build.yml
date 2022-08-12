@@ -7,9 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: '0'
+    - uses: actions/checkout@v3
 
     - name: Download Blender
       run: sudo snap install blender --classic
@@ -21,13 +19,21 @@ jobs:
       run: rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitignore' --exclude='export.py' . ./release
     - name: Switch to Release Folder
       run: |
-        cd release
-        ls -la
-    - name: Bump version and push tag
-      uses: anothrNick/github-tag-action@1.36.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.AUTOTAG_TOKEN }}
-        REPO_OWNER: flynsarmy
-        DEFAULT_BUMP: minor
-        WITH_V: true
-        INITIAL_VERSION: 0.0.0
+        ls -la release
+
+    # - name: Bump version and push tag
+    #   uses: anothrNick/github-tag-action@1.36.0
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.AUTOTAG_TOKEN }}
+    #     REPO_OWNER: flynsarmy
+    #     DEFAULT_BUMP: minor
+    #     WITH_V: true
+    #     INITIAL_VERSION: 0.0.0
+
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.AUTOTAG_TOKEN }}"
+        automatic_release_tag: "latest"
+        prerelease: false
+        files: |
+          release/*
