@@ -15,20 +15,16 @@ jobs:
     - name: Export objects
       run: /snap/bin/blender RoadsPathsFences.blend --background --python export.py
 
-    - name: Create Release Folder
-      run: rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitignore' --exclude='export.py' . ./release
-    - name: Switch to Release Folder
-      run: |
-        ls -la release
+    - name: Zip Folder
+      run: zip -r release.zip *.blend fbx obj gltf
 
-    # - name: Bump version and push tag
-    #   uses: anothrNick/github-tag-action@1.36.0
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.AUTOTAG_TOKEN }}
-    #     REPO_OWNER: flynsarmy
-    #     DEFAULT_BUMP: minor
-    #     WITH_V: true
-    #     INITIAL_VERSION: 0.0.0
+    # - name: Create Release Folder
+    #   run: rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitignore' --exclude='export.py' . ./release
+
+    # - name: Switch to Release Folder
+    #   run: |
+    #     ls -la release
+
 
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
@@ -36,4 +32,4 @@ jobs:
         automatic_release_tag: "latest"
         prerelease: false
         files: |
-          release/**
+          release.zip
