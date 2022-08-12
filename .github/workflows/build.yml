@@ -24,8 +24,9 @@ jobs:
         cd release
         ls -la
     - name: Bump version and push tag
-      uses: anothrNick/github-tag-action@master
+      uses: anothrNick/github-tag-action@1.39.0
       env:
         GITHUB_TOKEN: ${{ secrets.AUTOTAG_TOKEN }}
         REPO_OWNER: flynsarmy
         DEFAULT_BUMP: minor
+        WITH_V: true
