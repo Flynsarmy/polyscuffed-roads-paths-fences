@@ -49,6 +49,7 @@ bpy.ops.object.select_all(action='DESELECT')
 
 for obj in bpy.data.collections['Assets'].all_objects:
     obj.select_set(True)
+    obj.location = (0.0, 0.0, 0.0)
 
     # some exporters only use the active object
     view_layer.objects.active = obj
